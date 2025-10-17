@@ -1,10 +1,9 @@
 import json
 import boto3
 
-awsService = boto3.resource('dynamodb', region_name='us-east-2')
-table = awsService.Table('juwon-resume')
-
 def lambda_handler(event, context):
+    awsService = boto3.resource('dynamodb', region_name='us-east-2')
+    table = awsService.Table('juwon-resume')
     # TODO implement
     response = table.get_item(Key={
         'id':'1'
