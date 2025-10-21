@@ -8,7 +8,7 @@ from lambdaFunc import lambda_handler
 @mock_aws
 def test_lambda_handler():
     # Create a mock DynamoDB table
-    awsService = boto3.resource('dynamodb', region_name='us-east-2')
+    awsService = boto3.resource('dynamodb', region_name='us-east-1')
     awsService.create_table(
         TableName='juwon-resume',
         KeySchema=[{'AttributeName': 'id', 'KeyType': 'HASH'}],
