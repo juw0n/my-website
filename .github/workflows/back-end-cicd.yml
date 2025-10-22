@@ -1,4 +1,4 @@
-name: Test and Check lambda function
+name: Test lambda function and deploy to aws
 
 on:
     push:
@@ -6,9 +6,8 @@ on:
             - main
 
 jobs:
-    build:
+    test-lambdaFunc:
         runs-on: ubuntu-latest
-
         steps:
             - name: Checkout code
               uses: actions/checkout@master
@@ -23,9 +22,32 @@ jobs:
 
             - name: Run tests
               run:  pytest
+
+    deploy-lambdaFunc:
+        needs: test-lambdaFunc
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@master
+
+            - name: Setup up Terraform
+              uses: hashicorp/setup-terraform@v2
             
-              # env:
-              #   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-              #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-              #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-              #   AWS_REGION: 'us-east-2'
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v2
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: 'us-east-2'
+            
+            - name: Terraform Initialize
+              run: terraform init ./iac-Terraform
+
+            - name: Terraform plan
+              id: terraform_plan
+              run: terraform plan ./iac-Terraform -out=tfplan
+
+            - name: Terraform apply (if there are changes)
+              if: github.ref == 'refs/heads/main' && steps.terraform_plan.outputs.has_changes == 'true'
+              run: terraform apply -auto-approve tfplan
