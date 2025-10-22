@@ -42,12 +42,12 @@ jobs:
                 aws-region: 'us-east-2'
             
             - name: Terraform Initialize
-              run: terraform init ./iac-Terraform
+              run: terraform -chdir=./iac-Terraform init
 
             - name: Terraform plan
               id: terraform_plan
-              run: terraform plan ./iac-Terraform -out=tfplan
+              run: terraform -chdir=./iac-Terraform plan -out=tfplan
 
             - name: Terraform apply (if there are changes)
               if: github.ref == 'refs/heads/main' && steps.terraform_plan.outputs.has_changes == 'true'
-              run: terraform apply -auto-approve tfplan
+              run: terraform -chdir=./iac-Terraform apply -auto-approve tfplan
