@@ -10,12 +10,12 @@ def test_lambda_handler():
     # Create a mock DynamoDB table
     awsService = boto3.resource('dynamodb', region_name='us-east-1')
     awsService.create_table(
-        TableName='juwon-resume',
+        TableName='cloudResumeViewsTable',
         KeySchema=[{'AttributeName': 'id', 'KeyType': 'HASH'}],
         AttributeDefinitions=[{'AttributeName': 'id', 'AttributeType': 'S'}],
         ProvisionedThroughput={'ReadCapacityUnits': 5, 'WriteCapacityUnits': 5}
     )
-    table = awsService.Table('juwon-resume')
+    table = awsService.Table('cloudResumeViewsTable')
     table.put_item(Item={'id': '1', 'views': 0})
 
     # Execute the Lambda function
