@@ -13,3 +13,4 @@ Here’s what the project does:
 * Secures the site with HTTPS via AWS Certificate Manager.
 
 The high-level architecture looks like this:
+![Project Architecture Diagram](https://github.com/juw0n/my-website/blob/main/AWS%20Resume%20Achitecture.jpg)
