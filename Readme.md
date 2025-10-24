@@ -1,27 +1,15 @@
-Website deployment on AWS
-=========================
-This project is deployed on AWS using the following services:
-- S3 (Simple Storage Service) for static website hosting
-- CloudFront for content delivery network (CDN) to improve website performance and security
-- Route 53 for domain name system (DNS) management
-- ACM (AWS Certificate Manager) for SSL/TLS certificate management
-- Lambda@Edge for serverless functions to customize content delivery
-- GitHub Actions for continuous integration and continuous deployment (CI/CD)
-- Terraform for infrastructure as code (IaC) to manage AWS resources
-- Cloudflare for additional security and performance enhancements
-- Google Analytics for website traffic analysis and insights
-- Google Search Console for monitoring website presence in Google search results
-- Monitoring and Observability.
-- Security best practices to protect the website and its data.
-- Cost optimization strategies to manage and reduce AWS expenses.
-- Backup and disaster recovery plans to ensure data integrity and availability.
-- Performance optimization techniques to enhance website speed and user experience.
+Revisiting a simple project i did about two years ago, first to implement an idea and research i did on manageing an existing project with IAC, Terraform in my case, also to complete the project because i think and from reasearch most people dont actually do the backend IAC part of the project, my conclusion from limited resources online.
 
-Prerequisite for the Project.
-- An AWS account + user with neccesary privillages.
-- A registered domain name/address (use namecheap, goDaddy or AWS Route 53).
-- working Github account.
+It is an online challenge called [The Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/). it is a hands-on cloud engineering project that helps you build a real-world, serverless web application using any of the cloud providers (AWS, Azure or GCP), I use AWS. It’s more than just a static site, it connects front-end, back-end, CI/CD and Infrastructure as Code concepts into one project not leaving out security.
 
-The deployment process involves the following steps:
-1. Create a simple HTML page.
-2. 
+With the abundance of documentations and resources available online, I’ll walk you through a high level of how I designed and deployed my Cloud Resume Challenge project using AWS and GitHub Actions, with a clean, scalable architecture.
+
+Project Overview
+Here’s what the project does:
+
+* Hosts a personal resume website.
+* Displays a visitor counter powered by AWS Lambda and DynamoDB.
+* Uses a CI/CD pipeline for automated testing and deployment.
+* Secures the site with HTTPS via AWS Certificate Manager.
+
+The high-level architecture looks like this:
