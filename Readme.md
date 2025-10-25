@@ -44,7 +44,7 @@ This setup keeps the backend serverless, meaning no EC2 instances to manage!
 To automate testing and deployment, I set up a CI/CD pipeline using GitHub Actions:
 1. On every push to the main branch, GitHub Actions triggers two workflows.
 2. one updated website files to the S3 bucket.
-3. the second runs tests to ensure the Lambda function works, if tests pass, the workflow deploys the infrastrusture with terraform.
+3. the second runs tests to ensure the Lambda function works, if tests pass, the workflow deploys the infrastructure with terraform.
 
 This automation ensures that any change is deployed quickly and reliably.
 
